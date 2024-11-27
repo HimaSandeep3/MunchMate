@@ -1,8 +1,32 @@
-h1 {
-    color: purple;
-    font-family: 'Courier New', Courier, monospace;
+h1,
+h2,
+h3 {
+  color: purple;
+  font-family: "Courier New", Courier, monospace;
 }
-p{
-    color: red;
-    font-family: 'Courier New', Courier, monospace;
+p {
+  color: red;
+  font-family: "Courier New", Courier, monospace;
+}
+.title {
+  text-align: center;
+  align-items: center;
+  color: violet;
+  font-weight: bold;
+}
+.logo,.user {
+  height: 80px;
+  width: 100px;
+  margin-right: 20px;
+}
+.searchBar{
+    width:100%;
+    height: 20px;
+    border-radius: 11px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aqua;
 }
