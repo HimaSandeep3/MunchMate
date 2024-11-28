@@ -1,4 +1,4 @@
-h1,
+/* h1,
 h2,
 h3 {
   color: purple;
@@ -29,4 +29,125 @@ p {
     justify-content: space-between;
     align-items: center;
     background-color: aqua;
+} */
+* {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.header {
+  display: flex;
+  background: orange;
+  padding: 3px;
+  height: 98px;
+  justify-content: space-between;
+  border: 1px solid brown;
+  border-radius: 3px;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+}
+.img-logo {
+  height: 80px;
+  width: 90px;
+}
+.title {
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  margin-top: 2px;
+}
+.nav-items {
+  padding: 0px 20px;
+}
+.nav-items > ul {
+  display: flex;
+  list-style: none;
+  font-size: 18px;
+}
+.nav-items > ul :hover {
+  cursor: pointer;
+}
+.nav-items > ul > li {
+  display: flex;
+  padding: 18px;
+  margin-right: 18px;
+  font-weight: bold;
+}
+.body {
+  margin-top: 10px;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  position: relative;
+}
+.search-bar {
+  width: 60%;
+  border-radius: 7px;
+  height: 28px;
+  margin: 0px 8px;
+}
+.search-btn {
+  border-radius: 7px;
+  height: 28px;
+  background-color: bisque;
+  font-weight: bold;
+  cursor: pointer;
+}
+.search-icon {
+  position: absolute;
+  right: 23%;
+  width: 15px;
+  height: 15px;
+}
+input[type="text"]::placeholder {
+  text-align: left;
+  padding-left: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 5px;
+  width: 250px;
+  height: 310px;
+}
+.card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-img {
+  height: 200px;
+  width: 250px;
+  border-radius: 25px;
+}
+.card-context {
+  padding: 2px;
+  margin: 0px;
+}
+.card-context h3 {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px;
+  /* text-align: center; */
+}
+p {
+  margin: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  color: gray;
+}
+.restaurant-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
