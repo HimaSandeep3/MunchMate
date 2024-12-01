@@ -1,4 +1,5 @@
 import React from "react";
+import { FOOD_URL } from "../constants/constants";
 const RestaurantCard = (props) => {
     const {resData}=props;
     const{name,avgRating,cuisines,cloudinaryImageId,locality}=resData?.info;
@@ -6,7 +7,7 @@ const RestaurantCard = (props) => {
     return(
     <div className="card">
         <div>
-            <img className="card-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+cloudinaryImageId} alt="chickenTikka"/>
+            <img className="card-img" src={FOOD_URL+cloudinaryImageId} alt="chickenTikka"/>
         </div>
         <div className="card-context">
             <h3>{name}</h3>
