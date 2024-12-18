@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import RestaurantList from "../constants/swiggyRestaurants";
+import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
-  const [resList, setResList] = useState(RestaurantList);
+  const [resList, setResList] = useState([]);
+  const [filteredData,setFilteredData]=useState([]);
   const [searchProduct,setSearchProduct]=useState("");
-  return (
+  useEffect(()=>{
+    fetchRestaurants();
+  },[]);
+  const fetchRestaurants = async () => {
+    try {
+      const response = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"));
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const temp = await response.json();
+      const tempData=JSON.parse(temp.contents);
+      // console.log(tempData,'liveDataaa');
+      const res=tempData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      console.log(res,'resssssss');
+      setResList(res);
+      setFilteredData(res);
+      // res=JSON.parse(tempData?.data?.cards[2]?.data?.data?.cards)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  return resList.length===0 ? <Shimmer/> :(
     <div className="body">
       <div className="search">
         <input onChange={(e)=>{
@@ -25,7 +51,7 @@ const Body = () => {
           const filteredList = resList.filter(
             (x) =>x?.info?.name.toLowerCase().includes(searchProduct.toLowerCase())
           );
-          setResList(filteredList);
+          setFilteredData(filteredList);
         }}>
           Search
         </button>
@@ -34,17 +60,17 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             const filteredList = resList.filter(
-              (x) =>x?.info?.avgRating >= 4.5
+              (x) =>x?.info?.avgRating >= 4.3
             );
-            setResList(filteredList);
+            setFilteredData(filteredList);
           }}
         >
-          4.5⭐+ Ratings
+          4.3⭐+ Ratings
         </button>
       </div>
       <div className="restaurant-card">
-        {resList.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+        {filteredData.map((restaurant) => (
+          <Link to={`/restaurantId/${restaurant.info.id}`} key={restaurant.info.id}><RestaurantCard  resData={restaurant} /></Link>
         ))}
       </div>
     </div>
