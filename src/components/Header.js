@@ -6,11 +6,11 @@ const Header = () => {
   return(
     <div className="header">
       <div className="logo">
-        <img
+        <Link to="/"><img
           className="img-logo"
           src={LOGO_URL}
           alt=""
-        />
+        /></Link>
         <label className="title">MunchMate</label>
       </div>
       <div className="nav-items">
