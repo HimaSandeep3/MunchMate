@@ -1,0 +1,43 @@
+import React from "react";
+class UserClass extends React.Component {
+    constructor(){
+        super();
+        // console.log("child constructor");
+        this.state={
+            userInfo:{
+                name:"Sandeep"
+            }
+        }
+        console.log("child constructor");
+    }
+    async componentDidMount(){
+        console.log("Component did Mount child");
+        const data =await fetch("https://api.github.com/users/HimaSandeep3");
+        const res= await data.json();
+        console.log(res,"resssssss");
+        this.setState({
+            userInfo:res
+        });
+        this.timer=setInterval(()=>{
+            console.log("Timer called");
+        },1000)
+    }
+    componentDidUpdate(){
+        console.log("Component did update child");
+    }
+    componentWillUnmount(){
+        console.log("Component will unmount child");
+        clearInterval(this.timer);
+    }
+    render() {
+        console.log(" child render");
+        const{name}=this.state.userInfo;
+      return (
+        <div className="user">
+          <h2> {name}</h2>
+          <p>Made by using react Class component</p>
+        </div>
+      );
+    }
+}
+export default UserClass;
