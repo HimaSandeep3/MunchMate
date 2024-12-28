@@ -18,16 +18,12 @@ class UserClass extends React.Component {
         this.setState({
             userInfo:res
         });
-        this.timer=setInterval(()=>{
-            console.log("Timer called");
-        },1000)
     }
     componentDidUpdate(){
         console.log("Component did update child");
     }
     componentWillUnmount(){
         console.log("Component will unmount child");
-        clearInterval(this.timer);
     }
     render() {
         console.log(" child render");
