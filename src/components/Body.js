@@ -19,12 +19,10 @@ const Body = () => {
       
       const temp = await response.json();
       const tempData=JSON.parse(temp.contents);
-      // console.log(tempData,'liveDataaa');
       const res=tempData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       console.log(res,'resssssss');
       setResList(res);
       setFilteredData(res);
-      // res=JSON.parse(tempData?.data?.cards[2]?.data?.data?.cards)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
