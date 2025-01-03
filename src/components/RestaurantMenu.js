@@ -2,25 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Shimmer from './Shimmer';
 import Description from './Description';
-import { CORS_URL,FOOD_URL } from '../constants/constants';
+import { FOOD_URL } from '../constants/constants';
+import {useRestaurantMenu} from '../utils/useRestaurantMenu';
 
 const RestaurantMenu = () => {
-    const[resMenu,setResMenu]=useState(null);
     const [expandedSection, setExpandedSection] = useState(null);
     const {resID}=useParams();
-    useEffect(()=>{
-        fetchRestaurantMenu();
-    },[])
-
-const fetchRestaurantMenu=async()=>{
-    const response=await fetch(CORS_URL + encodeURIComponent("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId="+resID));
-    const temp=await response.json();
-    const tempData=JSON.parse(temp.contents);
-    const res=tempData.data?.cards[2]?.card?.card?.info
-    console.log(res,"cardData");
-    setResMenu(tempData.data);
-    console.log(tempData.data,"overallData");
-};
+    const resMenu= useRestaurantMenu(resID);
 if(resMenu===null)
   {
     return <Shimmer/>
@@ -31,7 +19,6 @@ if(resMenu===null)
   const{text}=resMenu?.cards[0]?.card?.card
 const{avgRating,totalRatingsString,costForTwoMessage,cuisines,sla}=resMenu?.cards[2]?.card?.card?.info;
 const{slaString}=sla;
-// const{name,description,defaultPrice}=resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards[0]?.card?.info;
 const totalSections =
   resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.length || 0;
 
