@@ -29,7 +29,7 @@ class UserClass extends React.Component {
         console.log(" child render");
         const{name}=this.state.userInfo;
       return (
-        <div className="user">
+        <div className="m-3 p-3 border-[1px] border-black">
           <h2> {name}</h2>
           <p>Made by using react Class component</p>
         </div>

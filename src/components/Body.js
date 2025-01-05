@@ -29,23 +29,23 @@ const Body = () => {
   };
 
   return resList.length===0 ? <Shimmer/> :(
-    <div className="body">
-      <div className="search">
+    <div className="mt-4">
+      <div className="flex justify-center items-center my-2 mx-0 relative">
         <input onChange={(e)=>{
           setSearchProduct(e.target.value)
         }}
           type="text"
           placeholder="Search for food..."
-          className="search-bar"
+          className="w-1/2 rounded-md h-7 my-0 mx-2 border-2"
         />
         <svg
-          className="search-icon"
+          className="absolute w-[15px] h-[15px] right-[33.5%]"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
         >
           <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
         </svg>
-        <button type="button" className="search-btn" onClick={()=>{
+        <button type="button" className="rounded-lg h-7 font-bold cursor-pointer bg-amber-200 my-0 mx-3 px-2" onClick={()=>{
           const filteredList = resList.filter(
             (x) =>x?.info?.name.toLowerCase().includes(searchProduct.toLowerCase())
           );
@@ -55,7 +55,7 @@ const Body = () => {
         </button>
         <button
           type="button"
-          className="search-btn"
+          className="rounded-lg h-7 font-bold cursor-pointer bg-amber-200 my-0 mx-3 px-2"
           onClick={() => {
             const filteredList = resList.filter(
               (x) =>x?.info?.avgRating >= 4.3
@@ -66,7 +66,7 @@ const Body = () => {
           4.3⭐+ Ratings
         </button>
       </div>
-      <div className="restaurant-card">
+      <div className="flex flex-wrap justify-center">
         {filteredData.map((restaurant) => (
           <Link to={`/restaurantId/${restaurant.info.id}`} key={restaurant.info.id}><RestaurantCard  resData={restaurant} /></Link>
         ))}

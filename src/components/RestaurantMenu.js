@@ -29,18 +29,18 @@ const sections = Array.from(
 );
 
 return (
-  <div className="menu-container">
-    <div className="menu-header">
-      <h3>{text}</h3>
-      <div className="menu-details subResDetails">
-        <p className="menu-rating">
+  <div className="m-2 max-w-[900px] mx-auto">
+    <div>
+      <h3 className='text-black font-semibold text-3xl'>{text}</h3>
+      <div className="mt-3  bg-orange-100 p-4 mb-5 rounded-xl shadow-md">
+        <p className='text-md'>
           ⭐ {avgRating} ({totalRatingsString}) • {costForTwoMessage}
         </p>
-        <h4 className="menu-cuisines">{cuisines.join(",")}</h4>
-        <p className="menu-delivery">Delivery in: {slaString}</p>
+        <h4 className="text-orange-600 underline text-lg">{cuisines.join(",")}</h4>
+        <p className="text-md">Delivery in: {slaString}</p>
       </div>
     </div>
-    <h2 className="menu-title">M E N U</h2>
+    <h2 className="text-gray-600 text-3xl my-8 mx-0 text-center">M E N U</h2>
 
     {sections.map((sectionIndex) => {
       const { itemCards, title } =
@@ -49,43 +49,43 @@ return (
       if (!itemCards || itemCards.length === 0) return null;
 
       return (
-        <div className="menu-items" key={sectionIndex}>
-          <h3 onClick={() => toggleAccordion(sectionIndex)} className="accordion-header">
+        <div className="mt-5" key={sectionIndex}>
+          <h3 onClick={() => toggleAccordion(sectionIndex)} className="accordion-header text-xl">
             {title} ({itemCards.length})
           </h3>
           {expandedSection === sectionIndex && (
             <div className="accordion-content">
-              <ul className="menu-list">
+              <ul className="p-0 list-none">
                 {itemCards.map((item) => (
-                  <li key={item?.card?.info?.id} className="menu-item">
-                    <div className="menu-item-content">
-                      <div className="menu-item-left">
-                        <p className="menu-item-name">{item?.card?.info?.name}</p>
-                        <p className="menu-item-price">
+                  <li key={item?.card?.info?.id} className="p-4 mb-5 bg-white rounded-xl shadow-md">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 mr-4 ">
+                        <p className="my-1 mx-0 text-lg text-gray-600 break-words font-bold">{item?.card?.info?.name}</p>
+                        <p className="my-1 mx-0 text-md text-gray-600 break-words font-semibold">
                           ₹{item?.card?.info?.defaultPrice / 100 || item?.card?.info?.price / 100}
                         </p>
-                        <p className="menu-item-rating">
+                        <p className="my-1 mx-0 text-md text-gray-600 break-words font-semibold">
                           ⭐ {item?.card?.info?.ratings?.aggregatedRating?.rating || 4.1} (
                           {item?.card?.info?.ratings?.aggregatedRating?.ratingCountV2 || 10})
                         </p>
                         <Description description={item?.card?.info?.description} />
                       </div>
-                      <div className="menu-item-right">
+                      <div className="flex flex-col items-end">
                         <img
-                          className="menu-item-img"
+                          className="w-32 h-32 mb-3 rounded-xl"
                           src={FOOD_URL + item?.card?.info?.imageId}
                           alt="Food Item"
                         />
-                        <button className="menu-item-button">Add</button>
+                        <button className="py-3 px-5 bg-green-500 text-white font-bold border-none rounded-md cursor-pointer items-center hover:bg-green-600">Add</button>
                       </div>
                     </div>
-                    <hr className="menu-item-divider" />
+                    <hr className="mt-4 w-[100%] border-[1px] border-[#dddddd]" />
                   </li>
                 ))}
               </ul>
             </div>
           )}
-          <div className="horizontalBar"></div>
+          <div className="mt-4 w-[100%] border-[10px] border-[#dddd]"></div>
         </div>
       );
     })}

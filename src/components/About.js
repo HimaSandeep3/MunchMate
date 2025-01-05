@@ -12,7 +12,7 @@ componentDidMount(){
 render(){
   console.log("Parent Render");
     return (
-    <div>
+    <div className="m-3 p-3">
       <h2>About Us</h2>
       <p>
         As of now it is being developed by Sandeep...And Still In-Progress state
@@ -22,16 +22,4 @@ render(){
   );
 }
 }
-// const About = () => {
-//   return (
-//     <div>
-//       <h2>About Us</h2>
-//       <p>
-//         As of now it is being developed by Sandeep...And Still In-Progress state
-//       </p>
-//       <User name={"Sandeep from Function"}/>
-//       <UserClass name={"Sandeep from Class"} location={"Machilipatnam class"}/>
-//     </div>
-//   );
-// };
 export default About;
