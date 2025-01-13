@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { LOGO_URL } from "../constants/constants";
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import cartLogo from '../assets/images/shopping-cart.png';
+import UserContext from "../utils/UserContext";
 const Header = () => {
   const[text,setText]=useState("Log In");
   const isOnline=useOnlineStatus();
+  const {name}=useContext(UserContext);
   return(
     <div className="flex bg-orange-400 sticky top-0 z-20 p-2 h-28 rounded-md justify-between">
       <div className="flex flex-col m-[2px]">
@@ -26,6 +28,7 @@ const Header = () => {
           <button className="flex rounded-md bg-white px-1" onClick={() => setText(text === "Log In" ? "Log Out" : "Log In")}>{text}
           <p className={text==="Log In"?"green":"red"} style={{marginLeft:"5px",textAlign:"center"}}>●</p>
           </button>
+          <li className="text- px-1 mx-1">{name}</li>
         </ul>
       </div>
     </div>

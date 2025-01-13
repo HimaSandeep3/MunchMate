@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   const [resList, setResList] = useState([]);
   const [filteredData,setFilteredData]=useState([]);
@@ -27,7 +28,7 @@ const Body = () => {
       console.error('Error fetching data:', error);
     }
   };
-
+  const{name,setUserName}=useContext(UserContext);
   return resList.length===0 ? <Shimmer/> :(
     <div className="mt-4">
       <div className="flex justify-center items-center my-2 mx-0 relative">
@@ -39,7 +40,7 @@ const Body = () => {
           className="w-1/2 rounded-md h-7 my-0 mx-2 border-2"
         />
         <svg
-          className="absolute w-[15px] h-[15px] right-[33.5%]"
+          className="absolute w-[15px] h-[15px] right-[40.5%]"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
         >
@@ -65,6 +66,7 @@ const Body = () => {
         >
           4.3⭐+ Ratings
         </button>
+        <input type="text" placeholder="Enter User Name" className="border-2 border-black rounded-md mx-1 px-1" value={name} onChange={(e)=>{setUserName(e.target.value)}}/>
       </div>
       <div className="flex flex-wrap justify-center">
         {filteredData.map((restaurant) => (
