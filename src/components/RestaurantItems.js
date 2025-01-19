@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { FOOD_URL } from '../constants/constants';
 import Description from './Description';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/cartSlice';
 const RestaurantItems = ({data,showIndex,setShowIndex,indexV}) => {
     const{title,itemCards}=data?.card?.card
     const toggleAccordion=indexV === showIndex?true:false;
@@ -11,6 +13,10 @@ const RestaurantItems = ({data,showIndex,setShowIndex,indexV}) => {
           setShowIndex(indexV);
         }
       };
+      const dispatch=useDispatch();
+      const addtoCart=(item)=>{
+        dispatch(addItem(item));
+      }
     return (
         <div className='cursor-pointer p-3 border-x-0 border-t-0 border-b-[16px] border-[#ddd]'>
             <div className='flex justify-between my-2 bg-white' onClick={handleToggle}>
@@ -35,9 +41,9 @@ const RestaurantItems = ({data,showIndex,setShowIndex,indexV}) => {
                           <Description description={item?.card?.info?.description} />
                         </div>
                         <div className="flex flex-col items-end relative">
-                            <img className="w-32 h-32 mb-3 rounded-xl bg-red-200" src={FOOD_URL + item?.card?.info?.imageId} alt="Food Item" />
+                            <img className="w-32 h-32 mb-3 rounded-xl bg-red-300" src={FOOD_URL + item?.card?.info?.imageId} alt="Food Item" />
                             <button className="absolute top-24 right-[25px] py-3 px-5 bg-white text-green-500 font-bold border-none rounded-md cursor-pointer items-center hover:bg-gray-300"
-                            >Add</button>
+                            onClick={()=>addtoCart(item)}>Add +</button>
                             </div>
                       </div>
                       <hr className="mt-4 w-[100%] border-[1px] border-[#dddddd]" />
